@@ -175,6 +175,9 @@ QuicListEntryRemove(
     QUIC_LIST_ENTRY* Blink = Entry->Blink;
     Blink->Flink = Flink;
     Flink->Blink = Blink;
+#ifdef DEBUG
+    Entry->Flink = Entry->Blink = NULL;
+#endif
     return (BOOLEAN)(Flink == Blink);
 }
 
